@@ -67,6 +67,17 @@ function keyBoardBtnPress(event){
 
         // Call the function for remove the background color of pressed alphabet
         removeBackgroundColorById(getLetterInLowerCase);
+
+        // score update functionalities
+        const currentScorePoint=document.getElementById('score-Point');
+        const scorePoint=currentScorePoint.innerText;
+        const scorePointNumber=parseInt(scorePoint);
+        console.log(scorePointNumber);
+
+        // add the score by pressing the right button
+        const updateScore=scorePointNumber+1;
+
+        currentScorePoint.innerText=updateScore;
     }
     else{
         console.log('You loose,Try Again');
