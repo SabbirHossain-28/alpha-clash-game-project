@@ -48,6 +48,20 @@ function removeBackgroundColorById(letterId){
     removeLetterBg.classList.remove('bg-orange-500');
 }
 
+// Create commonfunction for get number type value from the element;
+function getNumberFromElement(numberTypeElementId){
+    const getElement=document.getElementById(numberTypeElementId);
+    const numberElement=parseInt(getElement.innerText);
+    return(numberElement);
+}
+
+// Create common function for set the update value of score and life in the element
+function setUpdateValueToTheElement(updatedElementId,updateValue){
+    const targetElement=document.getElementById(updatedElementId);
+    targetElement.innerText=updateValue
+    return(targetElement)
+}
+
 // Function for player keypress functionalities
 // create event on pressing key in the playground keyboard
 function keyBoardBtnPress(event){
@@ -69,18 +83,34 @@ function keyBoardBtnPress(event){
         removeBackgroundColorById(getLetterInLowerCase);
 
         // score update functionalities
-        const currentScorePoint=document.getElementById('score-Point');
-        const scorePoint=currentScorePoint.innerText;
-        const scorePointNumber=parseInt(scorePoint);
-        console.log(scorePointNumber);
+        // const currentScorePoint=document.getElementById('score-Point');
+        // const scorePoint=currentScorePoint.innerText;
+        // const scorePointNumber=parseInt(scorePoint);
+
+        const scoreNumber=getNumberFromElement('score-Point');
+        const addScoreNumber=scoreNumber+1;
+        setUpdateValueToTheElement('score-Point',addScoreNumber)
 
         // add the score by pressing the right button
-        const updateScore=scorePointNumber+1;
-
-        currentScorePoint.innerText=updateScore;
+        // const updateScore=scorePointNumber+1;
+    
+        // update score point
+        // currentScorePoint.innerText=updateScore;
     }
     else{
-        console.log('You loose,Try Again');
+        // set the life reduce functionalities
+        // const reduceLife=document.getElementById('reduce-life');
+        // const reduceLifeNumber=parseInt(reduceLife.innerText);
+
+        const rerduceLife=getNumberFromElement('reduce-life');
+        const updateReduceLife=rerduceLife-1;
+        setUpdateValueToTheElement('reduce-life',updateReduceLife)
+
+        // Reduce life  when press wrong key
+        // const updateLife=reduceLifeNumber-1;
+
+        // uodate life value
+        // reduceLife.innerText=updateLife; 
     }
 }
 // Add event handler to the whole document structure in playground
