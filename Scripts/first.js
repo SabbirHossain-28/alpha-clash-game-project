@@ -12,6 +12,7 @@ function getRandomLetter(){
     const indexNumber=Math.round(randomNumber);
 
     const alphabet=alphabets[indexNumber];
+    console.log('your random leter',alphabet);
     return(alphabet);
 }
 function setBackgroundColorById(letterid){
@@ -25,6 +26,17 @@ function continueGame(){
     changeLetter.innerText=letter;
     setBackgroundColorById(changeLetter);
 }
+function keyBoardBtnPress(event){
+    const playerPressedBtn=event.key;
+    console.log('Player pressed', playerPressedBtn);
+
+    const changedLetter=document.getElementById('letterId');
+    const getLetterOnly=changedLetter.innerText;
+    const getLetterInLowerCase=getLetterOnly.toLocaleLowerCase();
+    console.log(playerPressedBtn,getLetterInLowerCase);
+}
+document.addEventListener('keyup',keyBoardBtnPress)
+
 function clickToSwitch(){
     pageSwitcher('landingPage','playground');
     continueGame();
