@@ -12,13 +12,17 @@ function getRandomLetter(){
     const indexNumber=Math.round(randomNumber);
 
     const alphabet=alphabets[indexNumber];
-    console.log('your random leter',alphabet);
     return(alphabet);
 }
 function setBackgroundColorById(letterid){
     const x=letterid.innerText.toLowerCase();
-    const displayletter=document.getElementById(x);
-    displayletter.classList.add('bg-orange-500');
+    const addLetterBg=document.getElementById(x);
+    addLetterBg.classList.add('bg-orange-500');
+}
+function removeBackgroundColorById(letterId){
+    const y=letterId;
+    const removeLetterBg=document.getElementById(y);
+    removeLetterBg.classList.remove('bg-orange-500');
 }
 function continueGame(){
     const letter =getRandomLetter();
@@ -28,12 +32,19 @@ function continueGame(){
 }
 function keyBoardBtnPress(event){
     const playerPressedBtn=event.key;
-    console.log('Player pressed', playerPressedBtn);
 
     const changedLetter=document.getElementById('letterId');
     const getLetterOnly=changedLetter.innerText;
     const getLetterInLowerCase=getLetterOnly.toLocaleLowerCase();
-    console.log(playerPressedBtn,getLetterInLowerCase);
+
+    if(playerPressedBtn===getLetterInLowerCase){
+        console.log('You got a point');
+        continueGame();
+        removeBackgroundColorById(getLetterInLowerCase);
+    }
+    else{
+        console.log('You loose,Try Again');
+    }
 }
 document.addEventListener('keyup',keyBoardBtnPress)
 
