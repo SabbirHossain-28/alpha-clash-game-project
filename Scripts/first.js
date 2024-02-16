@@ -48,6 +48,13 @@ function removeBackgroundColorById(letterId){
     removeLetterBg.classList.remove('bg-orange-500');
 }
 
+// get element inner text by id
+function getElementTextById (elementTextId){
+    const elementText=document.getElementById(elementTextId);
+    const text=elementText.innerText;
+    return(text);
+}
+
 // Create commonfunction for get number type value from the element;
 function getNumberFromElement(numberTypeElementId){
     const getElement=document.getElementById(numberTypeElementId);
@@ -67,6 +74,10 @@ function setUpdateValueToTheElement(updatedElementId,updateValue){
 function keyBoardBtnPress(event){
     // get the keyup event value when press the keyboard
     const playerPressedBtn=event.key;
+    console.log(playerPressedBtn);
+    if(playerPressedBtn==='Escape'){
+        gameOver();
+    }
 
     // get the display alphabet by elementId
     const changedLetter=document.getElementById('letterId');
@@ -89,7 +100,7 @@ function keyBoardBtnPress(event){
 
         const scoreNumber=getNumberFromElement('score-Point');
         const addScoreNumber=scoreNumber+1;
-        setUpdateValueToTheElement('score-Point',addScoreNumber)
+        setUpdateValueToTheElement('score-Point',addScoreNumber);
 
         // add the score by pressing the right button
         // const updateScore=scorePointNumber+1;
@@ -106,6 +117,10 @@ function keyBoardBtnPress(event){
         const updateReduceLife=rerduceLife-1;
         setUpdateValueToTheElement('reduce-life',updateReduceLife)
 
+        if(updateReduceLife===0){
+            gameOver()
+        }
+
         // Reduce life  when press wrong key
         // const updateLife=reduceLifeNumber-1;
 
@@ -119,5 +134,22 @@ document.addEventListener('keyup',keyBoardBtnPress)
 // Function for calling the page switcher function and set random alphabet into the display
 function clickToSwitch(){
     pageSwitcher('landingPage','playground');
+    pageSwitcher('end-page','playground');
+    setUpdateValueToTheElement('reduce-life',5);
+    setUpdateValueToTheElement('score-Point',0);
     continueGame();
 }
+function playAgainBtn(){
+
+}
+ function gameOver(){
+    pageSwitcher('playground','end-page')
+    const finalScore=document.getElementById('final-score');
+    const updateScore=document.getElementById('score-Point').innerText;
+    finalScore.innerText=updateScore;
+
+    const currentAlphabet=getElementTextById('letterId');
+    console.log(currentAlphabet);
+    removeBackgroundColorById(currentAlphabet);
+
+ }
