@@ -69,15 +69,6 @@ function setUpdateValueToTheElement(updatedElementId,updateValue){
     return(targetElement)
 }
 
-function pageSwitchEventByPressEnter(event){
-    const SwitchToPlaygroundByEnterKey=event.key;
-    console.log(SwitchToPlaygroundByEnterKey);
-    if(SwitchToPlaygroundByEnterKey==='Enter'){
-        pageSwitcher('landingPage','playground')
-    }
-}
-document.addEventListener('keyup',pageSwitchEventByPressEnter)
-
 // Function for player keypress functionalities
 // create event on pressing key in the playground keyboard
 function keyBoardBtnPress(event){
